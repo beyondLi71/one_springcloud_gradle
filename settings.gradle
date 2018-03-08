@@ -1,0 +1,8 @@
+rootProject.name = 'myspringcloudgradle'
+include 'eureka-server'
+include 'hello-service'
+include 'feign-consumer'
+include 'api-gateway'
+include 'config-server'
+include 'config-client'
+include 'rabbitmq-hello'

@@ -1,0 +1,12 @@
+#设置端口号
+server:
+  port: 8081
+#设置服务名称
+spring:
+  application:
+    name: rabbitmq-hello
+  rabbitmq:
+    host: 192.168.47.128
+    port: 5672
+    username: admin
+    password: admin

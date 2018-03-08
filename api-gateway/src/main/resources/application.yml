@@ -1,0 +1,21 @@
+#设置端口号
+server:
+  port: 5555
+#设置服务名称
+spring:
+  application:
+    name: api-gateway
+#指定注册中心
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1111/eureka/
+#配置路由
+zuul:
+  routes:
+    api-a:
+      path: /api-a/**
+      serviceId: hello-service
+    api-b:
+      paht: /api-b/**
+      serviceId: feign-consumer

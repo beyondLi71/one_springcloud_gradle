@@ -1,0 +1,36 @@
+#设置端口号
+server:
+  port: 7001
+#设置服务名称
+spring:
+  application:
+    name: config-server
+  rabbitmq:
+    host: 192.168.47.128
+    port: 5672
+    username: admin
+    password: admin
+#设置git地址
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/beyondLi71/myspringcloudconfiggradle.git
+          searchPaths:  config-repo
+          #username:
+          #password:
+      #label: master
+#设置配置中心账号密码
+security:
+  user:
+    name: beyondLi
+    password: 123456
+#指定注册中心
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1111/eureka/
+#设置 actuator开关
+management:
+  security:
+    enabled: false

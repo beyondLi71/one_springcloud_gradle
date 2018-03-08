@@ -1,0 +1,50 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.10.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+group = 'com.beyondli'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+
+ext {
+	springCloudVersion = 'Edgware.SR2'
+}
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-web')
+	//配置中心客户端
+	compile('org.springframework.cloud:spring-cloud-starter-config')
+	//eureka客户端
+	compile('org.springframework.cloud:spring-cloud-starter-eureka')
+	//关于连接config配置中心重试机制依赖包
+	compile('org.springframework.retry:spring-retry')
+	compile('org.springframework.boot:spring-boot-starter-aop')
+	//设置程序监控(用来生成手动刷新git配置接口)
+	compile("org.springframework.boot:spring-boot-starter-actuator")
+	//添加bus实时获取最新git数据依赖,上面那个依赖也是必须的
+	compile('org.springframework.cloud:spring-cloud-starter-bus-amqp')
+	//testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}

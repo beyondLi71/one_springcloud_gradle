@@ -1,0 +1,19 @@
+server:
+  port: 1111
+#禁用客户端行为(防止自己注册自己)
+#主机名
+eureka:
+  instance:
+    hostname: localhost
+#是否注册为服务(由于为注册中心,所以不向注册中心注册自己)
+  client:
+    register-with-eureka: false
+#是否检索服务(由于注册中心的职责就是维护服务实例,并不需要去检索服务)
+    fetch-registry: false
+#关闭自我保护(正确显示服务是否挂掉)
+  server:
+    enableSelfPreservation: false
+##扫描失效服务的间隔时间（缺省为60*1000ms）
+    eviction-interval-timer-in-ms: 5000
+#eureka默认空间的地址
+    service-url.defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/

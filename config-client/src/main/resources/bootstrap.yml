@@ -1,0 +1,41 @@
+#设置端口号
+server:
+  port: 7002
+#设置服务名称
+spring:
+  application:
+    name: application
+#设置请求的配置中心(通过ip)
+#  cloud:
+#    config:
+#      profile: dev
+#      label: master
+#      uri: http://localhost:7001
+#      #设置config账号密码
+#      username: beyondLi
+#      password: 123456
+#设置rabbitmq配置来使用bus实现git信息实时更新
+  rabbitmq:
+    host: 192.168.47.128
+    port: 5672
+    username: admin
+    password: admin
+#设置请求的配置中心(通过服务)
+  cloud:
+    config:
+      profile: test
+      #设置config账号密码
+      username: beyondLi
+      password: 123456
+      discovery:
+        #开启通过服务来访问ConfigServer功能
+        enabled: true
+        #指定注册服务名
+        serviceId: config-server
+      #设置先检验远程配置中心是否可连接，在进行本地其余加载(还可再配置重试机制，引入retry和aop包)
+      #failFast: true
+#指定注册中心
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1111/eureka/
