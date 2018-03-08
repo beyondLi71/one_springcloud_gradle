@@ -1,5 +1,7 @@
 package com.beyondli.rest;
 
+import com.beyondli.common.exception.ExceptionManager;
+import com.beyondli.common.tools.apiresult.AbstractApiResult;
 import com.beyondli.dto.User;
 import com.beyondli.feign.HelloService;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +21,8 @@ public class FeignController {
      */
     @Resource
     HelloService helloService;
+    @Resource
+    ExceptionManager exceptionManager;
 
     @RequestMapping(value = "/no/hello", method = RequestMethod.GET)
     public String hello() {
@@ -36,5 +40,13 @@ public class FeignController {
     public String postHello(@RequestBody User user) {
         String userInfo = helloService.postHello(user);
         return userInfo;
+    }
+
+    @RequestMapping(value = "/test/exception/{state}", method = RequestMethod.GET)
+    public AbstractApiResult testException(@PathVariable String state) {
+        if (state.equals("no")) {
+            throw exceptionManager.create("TEST_0001");
+        }
+        return AbstractApiResult.success("success");
     }
 }
