@@ -1,4 +1,4 @@
-rootProject.name = 'myspringcloudgradle'
+rootProject.name = 'one_springcloud_gradle'
 include 'eureka-server'
 include 'hello-service'
 include 'feign-consumer'
